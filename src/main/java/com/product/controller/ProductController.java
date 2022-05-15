@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.product.constants.ResponseCode;
 import com.product.dtos.ProductDto;
+import com.product.dtos.GetProductDetailsRequest;
 import com.product.dtos.ProductDetails;
 import com.product.dtos.Response;
 import com.product.exception.CustomException;
@@ -33,6 +34,13 @@ public class ProductController {
 	@PostMapping(value="/add-product")
 	public void addProduct(@RequestBody ProductDto prod) throws CustomException{
          productService.addProduct(prod);
+	}
+	
+	@GetMapping(value = "/getProduct")
+	public ResponseEntity<ProductDto> getProductDetails (@RequestBody GetProductDetailsRequest getProductDetailsRequest) 
+			throws CustomException{
+		ProductDto prodDetails = productService.findProductByName(prodName);
+	    return new ResponseEntity<>(prodDetails , HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/find-product-by-name/{prodName}")
