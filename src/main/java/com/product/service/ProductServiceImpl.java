@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.product.dtos.ProductDto;
+import com.product.dtos.GetProductDetailsRequest;
+import com.product.dtos.GetProductDetailsResponse;
 import com.product.dtos.ProductDetails;
 import com.product.dtos.ProductDto;
 import com.product.dtos.SellerProductDto;
@@ -66,6 +68,16 @@ public class ProductServiceImpl {
 		}else {
 		     throw new CustomException("Product with this productId Doesn't exist");	
 		}
+	}
+
+
+	public GetProductDetailsResponse getProductNames(GetProductDetailsRequest getProductDetailsRequest) throws CustomException {
+		// TODO 
+		List<ProductDto> productDetailsList = new ArrayList<>(); // List of ProductDtos
+		// TODO - Call repository layer and using findById populate above list. 
+		// Use streams API to replace the ProductDtos from above list with names of products only 
+		// Set this list to response. 
+		return null;
 	}
 	
 }
