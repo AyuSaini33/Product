@@ -38,10 +38,10 @@ public class ProductController {
 	}
 	
 	@GetMapping(value = "/getProduct")
-	public ResponseEntity<GetProductDetailsResponse> getProductNames (@RequestBody GetProductDetailsRequest getProductDetailsRequest) 
+	public ResponseEntity<GetProductDetailsResponse> getProductNames(@RequestBody GetProductDetailsRequest getProductDetailsRequest) 
 			throws CustomException{
-		ProductDto prodDetails = productService.getProductNames(getProductDetailsRequest);
-	    return new ResponseEntity<>(prodDetails , HttpStatus.OK);
+		GetProductDetailsResponse prodNames = productService.getProductNames(getProductDetailsRequest);
+	    return new ResponseEntity<>(prodNames , HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/find-product-by-name/{prodName}")

@@ -3,6 +3,7 @@ package com.product.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,7 +78,20 @@ public class ProductServiceImpl {
 		// TODO - Call repository layer and using findById populate above list. 
 		// Use streams API to replace the ProductDtos from above list with names of products only 
 		// Set this list to response. 
-		return null;
+		
+		for(String prodIds : getProductDetailsRequest.getProductIds()) {
+			Optional<Product> product = productRepository.findById(prodIds);
+			if(product.isPresent()) {
+				Product productEntity = product.get();
+				ProductDto productDto = Product.createDto(productEntity);
+				productDetailsList.add(productDto);
+			}
+		}
+		
+		GetProductDetailsResponse resp = new GetProductDetailsResponse();
+		resp.setProductNames(productDetailsList.stream().map(prod -> {return prod.getProductName();}).collect(Collectors.toList()));
+				
+		return resp;
 	}
 	
 }
