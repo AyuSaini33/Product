@@ -89,6 +89,7 @@ public class ProductServiceImpl {
 		}
 		
 		GetProductDetailsResponse resp = new GetProductDetailsResponse();
+		// resp.setProductNames(productDetailsList.stream().map(prod -> prod.getProductName()).collect(Collectors.toList()));
 		resp.setProductNames(productDetailsList.stream().map(prod -> {return prod.getProductName();}).collect(Collectors.toList()));
 				
 		return resp;
